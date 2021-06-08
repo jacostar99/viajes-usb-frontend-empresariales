@@ -1,0 +1,58 @@
+<br>
+
+<div class="card border-primary mb-3">
+    <div class="card-header">
+        <h3 class="text-center">
+            Tipos de identificación
+        </h3>
+    </div>
+    <div class="card-body text-dark">
+
+
+        <div class="my-2 text-left">
+            <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/tipo-id/crear-tipo-identificacion']">Crear tipo de identificación</button>
+        </div>
+
+
+        <div class="form-group">
+            <input type="text" name="like" id="like" placeholder="Buscar por nombre" class="form-control" (keyup)="busqueda(buscarTexto.value)" #buscarTexto>
+        </div>
+        <br>
+
+        <table class="table table-bordered table-striped" *ngIf="tipoIdList.length >0; else aviso">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Codigo</th>
+                    <th>Fecha creacion</th>
+                    <th>Usuario creador</th>
+                    <th>Estado</th>
+                    <th>Editar</th>
+                    <th>Ver más</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor=" let tiid of tipoIdList ">
+                    <td> {{tiid.nombre}} </td>
+                    <td> {{tiid.codigo}} </td>
+                    <td> {{tiid.fechaCreacion | date}} </td>
+                    <td> {{tiid.usuCreador}} </td>
+                    <td> {{tiid.estado}} </td>
+
+
+                    <td>
+                        <button type="button" name="button" class="btn btn-success" [routerLink]="['/tipo-id/editar-tipo-identificacion', tiid.idTiid]">Editar</button>
+                    </td>
+                    <td>
+                        <button type="button" name="button" class="btn btn-danger" (click)="eliminar(tiid)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #aviso>
+            <h2 class="text-center">!No se encontraron tipos de identificación con este nombre!</h2>
+
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="#" style="margin-left: auto;">
+            <img src="assets/img/de-viaje.png" alt="" width="55" height="55"> VIAJES USB APP
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav" style="margin-left: 140px;">
+
+
+
+                <li class="nav-item" *ngIf="validarUsuario() === 'A'">
+                    <a class="nav-link" [routerLink]="['tipo-destino']" routerLinkActive="active">
+                        <img src="assets/img/playa.png" alt="" width="40  " height="40">Tipos de destinos
+                    </a>
+                </li>
+
+                <li class="nav-item" *ngIf="validarUsuario() === 'A'">
+                    <a class="nav-link" [routerLink]="['destino']" routerLinkActive="active">
+                        <img src="assets/img/brochure.png" width="40" height="40">Destinos
+                    </a>
+                </li>
+
+
+
+                <li class="nav-item" *ngIf="validarUsuario() === 'A'">
+                    <a class="nav-link" [routerLink]="['tipo-id']" routerLinkActive="active">
+                        <img src="assets/img/identity-card.png" width="40" height="40">Tipos de identificación
+                    </a>
+                </li>
+
+                <li class="nav-item" *ngIf="validarUsuario() === 'A'">
+                    <a class="nav-link" [routerLink]="['cliente']" routerLinkActive="active">
+                        <img src="assets/img/team.png" alt="" width="40" height="40">Clientes
+                    </a>
+                </li>
+
+
+
+
+
+
+
+
+
+            </ul>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+            <div>
+                <button style="margin-right: auto;" class="btn btn-outline-primary" role="button" style="width:140px; height: 20;" (click)='deslog()' *ngIf="   validarUsuario() === 'A' ">Salir</button>
+
+            </div>
+
+        </div>
+    </div>
+</nav>

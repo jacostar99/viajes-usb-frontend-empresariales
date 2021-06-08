@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "viajes-usb-69c80": {
+      "hosting": {
+        "viajesusb-front": [
+          "viajes-usb-69c80"
+        ]
+      }
+    }
+  }
+}

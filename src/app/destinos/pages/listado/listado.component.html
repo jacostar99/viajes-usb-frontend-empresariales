@@ -1,0 +1,44 @@
+<br>
+<h1 class="text-center">Destinos</h1>
+
+<div class="my-2 text-left">
+    <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/destino/crear-destino']">Crear destino</button>
+</div>
+<hr>
+
+<div class="form-group">
+    <input type="text" name="like" id="like" placeholder="Buscar por nombre" class="form-control" (keyup)="busqueda(buscarTexto.value)" #buscarTexto>
+</div>
+<br>
+<div class="row row-cols-1 row-cols-md-3 g-4 " *ngIf="destinos.length >0; else aviso">
+    <div class="col" *ngFor="let destino of destinos">
+        <div class="card h-100" style="border-color: slategray;">
+
+            <img src="/assets/img/san.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title; text-center"> {{destino.nombre}} </h5>
+                <p class="card-text; text-center"> {{destino.descripcion}} </p>
+
+                <p class="card-text; text-center"> <strong>¿Acceso por aire?</strong> {{destino.aire == 'S' ? 'SI':'NO'}}</p>
+                <p class="card-text; text-center"> <strong>¿Acceso por mar?</strong> {{destino.mar == 'S' ? 'SI':'NO'}}</p>
+                <p class="card-text; text-center"> <strong>¿Acceso por tierra?</strong> {{destino.tierra == 'S' ? 'SI':'NO'}}</p>
+
+
+                <div class="p-col-12">
+                    <button type="button" name="button" class="btn btn-outline-primary" style="width: 40%;" [routerLink]="['/destino/editar-destino', destino.idDest]">
+                        Editar
+                    </button> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    <button class="btn btn-outline-danger " style="width: 40%;" (click)='eliminar(destino)'>
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<ng-template #aviso>
+    <h2 class="text-center">!No se encontraron destinos con este nombre!</h2>
+
+</ng-template>

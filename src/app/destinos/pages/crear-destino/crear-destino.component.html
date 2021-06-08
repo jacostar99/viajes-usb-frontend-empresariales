@@ -1,0 +1,122 @@
+<br>
+
+<div class="card bg-light">
+    <div class="card-header">
+        <h3 class="text-center">Destino <img src="assets/img/add-file.png" alt="..." width="40  " height="40">
+        </h3>
+    </div>
+    <div class="card-body">
+        <form #destinoForm="ngForm">
+
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" placeholder="" [(ngModel)]="destino.nombre" name="nombre" required minlength="1" #nombre="ngModel">
+                    <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                        <div *ngIf="nombre!.errors!.required">
+                            El nombre es requerido
+                        </div>
+                    </div>
+                </div>
+                <!-- 
+                TODO: CORREGIR QUE NO SE PUEDAN PONER ESPACIOS BLANCOS -->
+                <div class="form-group col-md-6">
+                    <label for="codigo">Codigo:</label>
+                    <input type="text" class="form-control" [(ngModel)]="destino.codigo" name="codigo" required minlength="1" required maxlength="5" #codigo="ngModel">
+                    <div class="alert alert-danger" *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)">
+                        <div *ngIf="codigo.errors!.required">
+                            El codigo es requerido
+                        </div>
+                        <div *ngIf="codigo!.errors!.minlength">
+                            El codigo debe tener mas de 1 caracter
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="form-group row">
+
+
+                <div class="form-group row">
+                    <div class="form-group col-md-2">
+                        <label for="tierra" class="form-label">Acceso por tierra</label>
+                        <select name="tierra" class="form-select" [(ngModel)]="destino.tierra" style="width:100px;" required>
+                            <option value="S">SI</option>
+                            <option value="N">NO</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group col-md-2">
+                        <label for="aire" class="form-label">Acceso por aire</label>
+                        <select name="aire" class="form-select" [(ngModel)]="destino.aire" style="width:100px;" required>
+                            <option value="S">SI</option>
+                            <option value="N">NO</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="mar" class="form-label">Acceso por mar</label>
+                        <select name="mar" class="form-select" [(ngModel)]="destino.mar" style="width:100px;" required>
+                            <option value="S">SI</option>
+                            <option value="N">NO</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="estado" class="form-label">Estado</label>
+                        <select name="estado" class="form-select" [(ngModel)]="destino.estado" style="width:150px;" required>
+                            <option value="A">Activo</option>
+                            <option value="I">Inactivo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="tipoDestinoCodigo" class="form-label">Tipo de destino</label>
+                        <select name="tipoDestinoCodigo" class="form-select" [(ngModel)]="tide" style="width:200px;" required>
+                            <option *ngFor="let tipoDestino of tiposDestinoList" [value]="tipoDestino.codigo"> {{tipoDestino.nombre}}</option>
+                          
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-9">
+                        <label for="primerApellido">Descripcion:</label>
+                        <textarea class="form-control" [(ngModel)]="destino.descripcion" name="descripcion" required minlength="1" #descripcion="ngModel" style="height: 90px;"></textarea>
+                        <div class="alert alert-danger" *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                            <div *ngIf="descripcion!.errors!.required">
+                                La descripcion es requerida
+                            </div>
+                            <div *ngIf="descripcion !.errors!.minlength">
+                                La descripcion debe tener mas de 1 caracter
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+            <br>
+
+            <br>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" style="width:200px;" (click)='crear()' *ngIf="!destino.idDest; else elseBlock" [disabled]="!destinoForm.form.valid">Crear</button> &nbsp;&nbsp;&nbsp;
+
+                    <button class="btn btn-secondary" role="button" style="width:200px;" [routerLink]="['/destino/listado']">Volver</button>
+
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary" role="button" style="width:200px;" (click)='editar()' [disabled]="!destinoForm.form.valid">Editar</button>
+
+                    </ng-template>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,154 @@
+<br>
+<div class="card bg-light">
+    <div class="card-header">
+        <h3 class="text-center">Clientes</h3>
+    </div>
+    <div class="card-body">
+        <form #clienteForm="ngForm">
+
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" required minlength="1" #nombre="ngModel">
+                    <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                        <div *ngIf="nombre!.errors!.required">
+                            El nombre es requerido
+                        </div>
+                        <div *ngIf="nombre!.errors!.minlength">
+                            El nombre debe tener mas de 1 caracter
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="primerApellido">Primer apellido:</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.primerApellido" name="primerApellido" required minlength="1" #primerApellido="ngModel">
+                    <div class="alert alert-danger" *ngIf="primerApellido.invalid && (primerApellido.dirty || primerApellido.touched)">
+                        <div *ngIf="primerApellido!.errors!.required">
+                            El primer apellido es requerido
+                        </div>
+                        <div *ngIf="primerApellido!.errors!.minlength">
+                            El primer apellido debe tener mas de 1 caracter
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label for="segundoApellido">Segundo apellido:</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.segundoApellido" name="segundoApellido" required minlength="1" #segundoApellido="ngModel">
+                    <div class="alert alert-danger" *ngIf="segundoApellido.invalid && (segundoApellido.dirty || segundoApellido.touched)">
+                        <div *ngIf="segundoApellido!.errors!.required">
+                            El segundo apellido es requerido
+                        </div>
+                        <div *ngIf="segundoApellido!.errors!.minlength">
+                            El segundo apellido debe tener mas de 1 caracter
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="telefono1">Telefono 1:</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.telefono1" name="telefono1" required minlength="7" #telefono1="ngModel">
+                    <div class="alert alert-danger" *ngIf="telefono1.invalid && (telefono1.dirty || telefono1.touched)">
+                        <div *ngIf="telefono1!.errors!.required">
+                            El telefono 1 es requerido
+                        </div>
+                        <div *ngIf="telefono1!.errors!.minlength">
+                            El telefono debe tener mas de 6 caracteres
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label for="telefono2">Telefono 2:</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.telefono2" name="telefono2">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="correo">Correo electronico:</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.correo" name="correo" required email required minlength="1" #correo="ngModel">
+                    <div class="alert alert-danger" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+                        <div *ngIf="correo!.errors!.required">
+                            El Correo es requerido
+                        </div>
+                        <div *ngIf="correo!.errors!.email">
+                            Debe tener un formato de correo
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label for="numeroIdentificacion">Numero identificación :</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.numeroIdentificacion" name="numeroIdentificacion" required minlength="1" #numeroIdentificacion="ngModel">
+                    <div class="alert alert-danger" *ngIf="numeroIdentificacion.invalid && (numeroIdentificacion.dirty || numeroIdentificacion.touched)">
+                        <div *ngIf="numeroIdentificacion!.errors!.required">
+                            El numero de identificación es requerido
+                        </div>
+                        <div *ngIf="numeroIdentificacion!.errors!.minlength">
+                            El numero de identificación debe tener mas de 8 caracteres
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="estado" class="form-label">Estado:</label>
+                    <select name="estado" class="form-select" [(ngModel)]="cliente.estado" style="width:150px;">
+                        <option value="A">Activo</option>
+                        <option value="I">Inactivo</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group col-md-2">
+                    <label for="sexo" class="form-label">Sexo:</label>
+                    <select name="sexo" class="form-select" [(ngModel)]="cliente.sexo" style="width:150px;" required>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="tipoIdentificacionCodigo" class="form-label">Tipo identificacion:</label>
+                    <select name="tipoIdentificacionCodigo" class="form-select" [(ngModel)]="tiid" style="width:150px;" required>
+                        <option *ngFor="let tiId of tipoIdList" [value]="tiId.codigo"> {{tiId.nombre}}</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                    <input type="date" class="form-control" [(ngModel)]="cliente.fechaNacimiento" name="fechaNacimiento" required #fechaNacimiento="ngModel">
+
+                </div>
+            </div>
+
+
+
+            <br>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" style="width:200px;" (click)='crear()' *ngIf="!cliente.idClie; else elseBlock" [disabled]="!clienteForm.form.valid">Crear</button> &nbsp;&nbsp;&nbsp;
+
+                    <button class="btn btn-secondary" role="button" style="width:200px;" [routerLink]="['/cliente/listado']">Volver</button>
+
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary" role="button" (click)='editar()' style="width:200px;" [disabled]="!clienteForm.form.valid">Editar</button>
+
+                    </ng-template>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+<br>
+<div class="card bg-light">
+    <div class="card-header">
+        <h3 class="text-center">Tipo de destino</h3>
+    </div>
+    <div class="card-body">
+        <form #tipoIdForm="ngForm">
+
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" [(ngModel)]="tide.nombre" name="nombre" required minlength="1" #nombre="ngModel">
+                    <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                        <div *ngIf="nombre!.errors!.required">
+                            El nombre es requerido
+                        </div>
+                        <div *ngIf="nombre!.errors!.minlength">
+                            El nombre debe tener mas de 1 caracter
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="codigo">Codigo:</label>
+                    <input type="text" class="form-control" [(ngModel)]="tide.codigo" name="codigo" required minlength="1" required maxlength="5" #codigo="ngModel">
+                    <div class="alert alert-danger" *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)">
+                        <div *ngIf="codigo!.errors!.required">
+                            El codigo es requerido
+                        </div>
+                        <div *ngIf="codigo!.errors!.minlength">
+                            El codigo requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label for="descripcion">Descripcion:</label>
+                    <textarea class="form-control" [(ngModel)]="tide.descripcion" name="descripcion" required minlength="1" #descripcion="ngModel"></textarea>
+                    <div class="alert alert-danger" *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                        <div *ngIf="descripcion!.errors!.required">
+                            La descripcion es requerida
+                        </div>
+                        <div *ngIf="descripcion!.errors!.minlength">
+                            La descripcion es requerida
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-2">
+                    <label for="estado" class="form-label">Estado:</label>
+                    <select name="estado" class="form-select" [(ngModel)]="tide.estado" style="width:150px;" required>
+                            <option value="A">Activo</option>
+                            <option value="I">Inactivo</option>
+                        </select>
+                </div>
+
+
+
+
+            </div>
+
+            <br>
+
+
+
+
+
+
+
+
+
+
+            <br>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" style="width:200px;" (click)='crear()' *ngIf="!tide.idTide; else elseBlock" [disabled]="!tipoIdForm.form.valid">Crear</button> &nbsp;&nbsp;&nbsp;
+
+                    <button class="btn btn-secondary" role="button" style="width:200px;" [routerLink]="['/tipo-destino/listado']">Volver</button>
+
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary" role="button" (click)='editar()' style="width:200px;" [disabled]="!tipoIdForm.form.valid">Editar</button>
+
+                    </ng-template>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

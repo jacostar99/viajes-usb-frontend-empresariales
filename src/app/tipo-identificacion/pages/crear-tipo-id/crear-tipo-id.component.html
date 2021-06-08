@@ -1,0 +1,77 @@
+<br>
+<div class="card bg-light">
+    <div class="card-header">
+        <h3 class="text-center">Clientes</h3>
+    </div>
+    <div class="card-body">
+        <form #tipoIdForm="ngForm">
+
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" [(ngModel)]="tiId.nombre" name="nombre" required minlength="1" #nombre="ngModel">
+                    <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                        <div *ngIf="nombre!.errors!.required">
+                            El nombre es requerido
+                        </div>
+                        <div *ngIf="nombre!.errors!.minlength">
+                            El nombre debe tener mas de 1 caracter
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="codigo">Codigo:</label>
+                    <input type="text" class="form-control" [(ngModel)]="tiId.codigo" name="codigo" required minlength="1" required maxlength="5" #codigo="ngModel">
+                    <div class="alert alert-danger" *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)">
+                        <div *ngIf="codigo!.errors!.required">
+                            El codigo es requerido
+                        </div>
+                        <div *ngIf="codigo!.errors!.minlength">
+                            El codigo requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+
+
+
+
+
+            <div class="form-group row">
+
+
+                <div class="form-group col-md-2">
+                    <label for="estado" class="form-label">Estado:</label>
+                    <select name="estado" class="form-select" [(ngModel)]="tiId.estado" style="width:150px;">
+                        <option value="A">Activo</option>
+                        <option value="I">Inactivo</option>
+                    </select>
+                </div>
+
+
+
+            </div>
+
+
+
+
+            <br>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" style="width:200px;" (click)='crear()' *ngIf="!tiId.idTiid; else elseBlock" [disabled]="!tipoIdForm.form.valid">Crear</button> &nbsp;&nbsp;&nbsp;
+
+                    <button class="btn btn-secondary" role="button" style="width:200px;" [routerLink]="['/tipo-id/listado']">Volver</button>
+
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary" role="button" (click)='editar()' style="width:200px;" [disabled]="!tipoIdForm.form.valid">Editar</button>
+
+                    </ng-template>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

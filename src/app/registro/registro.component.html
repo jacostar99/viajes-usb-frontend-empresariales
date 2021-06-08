@@ -1,0 +1,100 @@
+<br>
+<div class="card bg-light">
+    <div class="card-header">
+        <h3 class="text-center">Registro</h3>
+    </div>
+    <div class="card-body">
+        <form #newUserForm="ngForm">
+
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label for="correo">Correo:</label>
+                    <input type="text" class="form-control" [(ngModel)]="newUser.correo" name="correo" required email minlength="1" #correo="ngModel">
+                    <div class="alert alert-danger" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+                        <div *ngIf="correo!.errors!.required">
+                            El correo es requerido
+                        </div>
+                        <div *ngIf="correo!.errors!.minlength">
+                            El correo debe tener mas de 1 caracter
+                        </div>
+                        <div *ngIf="correo!.errors!.email">
+                            Debe tener formato correo
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" class="form-control" [(ngModel)]="newUser.password" name="password" required minlength="8" #password="ngModel">
+                    <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+                        <div *ngIf="password!.errors!.required">
+                            La contraseña es requerida
+                        </div>
+                        <div *ngIf="password!.errors!.minlength">
+                            La contraseña debe tener mas de 8 caracteres
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label for="login">Username:</label>
+                    <input type="text" class="form-control" [(ngModel)]="newUser.login" name="login" required minlength="1" #login="ngModel">
+                    <div class="alert alert-danger" *ngIf="login.invalid && (login.dirty || login.touched)">
+                        <div *ngIf="login!.errors!.required">
+                            El username es requerido
+                        </div>
+                        <div *ngIf="login!.errors!.minlength">
+                            El username debe tener mas de 1 caracter
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" [(ngModel)]="newUser.nombre" name="nombre" required minlength="1" #nombre="ngModel">
+                    <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                        <div *ngIf="nombre!.errors!.required">
+                            El nombre es requerido
+                        </div>
+                        <div *ngIf="nombre!.errors!.minlength">
+                            El nombre debe tener mas de 1 caracter
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <label for="identificacion">Identificación:</label>
+                    <input type="text" class="form-control" [(ngModel)]="newUser.identificacion" name="identificacion" required minlength="1" #identificacion="ngModel">
+                    <div class="alert alert-danger" *ngIf="identificacion.invalid && (identificacion.dirty || identificacion.touched)">
+                        <div *ngIf="identificacion!.errors!.required">
+                            La identificación es requerida
+                        </div>
+                        <div *ngIf="identificacion!.errors!.minlength">
+                            La identificación debe tener mas de 1 caracter
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" style="width:200px;" (click)='register()' [disabled]="!newUserForm.form.valid">Registrar</button> &nbsp;&nbsp;&nbsp;
+
+                    <button class="btn btn-secondary" role="button" style="width:200px;" [routerLink]="['login']">Volver</button>
+
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

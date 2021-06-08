@@ -1,0 +1,62 @@
+<br>
+
+<div class="card border-primary mb-3">
+    <div class="card-header">
+        <h3 class="text-center">
+            Clientes
+        </h3>
+    </div>
+    <div class="card-body text-dark">
+
+
+        <div class="my-2 text-left">
+            <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/cliente/crear-cliente']">Crear cliente</button>
+        </div>
+
+        <div class="form-group">
+            <input type="text" name="like" id="like" placeholder="Buscar por nombre" class="form-control" (keyup)="busqueda(buscarTexto.value)" #buscarTexto>
+        </div>
+        <br>
+        <table class="table table-bordered table-striped" *ngIf="clientes.length >0; else aviso">
+
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Primer apellido</th>
+                    <th>Correo</th>
+                    <th>Fecha nacimiento</th>
+                    <th>Fecha creacion</th>
+                    <th>Identificación</th>
+                    <th>Ver más</th>
+                    <th>Eliminar</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor=" let cliente of clientes ">
+                    <td> {{cliente.nombre}} </td>
+                    <td> {{cliente.primerApellido}} </td>
+                    <td> {{cliente.correo}} </td>
+
+                    <!--TODO: darle formato a la fecha-->
+                    <td> {{cliente.fechaNacimiento | date}} </td>
+                    <td> {{cliente.fechaCreacion | date}} </td>
+                    <td> {{cliente.numeroIdentificacion}} </td>
+                    <td>
+                        <button type="button" name="button" class="btn btn-success" [routerLink]="['/cliente/editar-cliente', cliente.idClie]">Ver más</button>
+                    </td>
+                    <td>
+                        <button type="button" name="button" (click)="eliminar(cliente)" class="btn btn-danger">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ng-template #aviso>
+            <h2 class="text-center">!No se encontraron clientes con este nombre!</h2>
+
+        </ng-template>
+
+    </div>
+</div>
